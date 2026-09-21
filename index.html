@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Datos Vitales - Mateo U</title>
+    <!-- Importamos fuentes divertidas de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            font-family: 'Quicksand', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 440px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            border: 5px solid #ffde59;
+            position: relative;
+        }
+
+        /* Cabecera divertida */
+        .header {
+            background: #ff6b6b;
+            color: white;
+            text-align: center;
+            padding: 25px 20px 15px 20px;
+            border-bottom: 4px dashed #ffde59;
+        }
+
+        .header h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 26px;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+
+        /* Contenedor del muñequito SVG */
+        .avatar-container {
+            margin: -10px auto 10px auto;
+            width: 110px;
+            height: 110px;
+            background: #ffde59;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            border: 4px solid #ffffff;
+        }
+
+        .avatar-container svg {
+            width: 80px;
+            height: 80px;
+        }
+
+        .content {
+            padding: 10px 25px 25px 25px;
+        }
+
+        .info-group {
+            background: #f7f9fc;
+            border-radius: 15px;
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid #e1e8ed;
+        }
+
+        .info-label {
+            font-weight: 700;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .info-value {
+            font-family: 'Fredoka One', cursive;
+            font-size: 20px;
+            color: #ff6b6b;
+        }
+
+        .info-value.rh {
+            background: #ff6b6b;
+            color: white;
+            padding: 2px 12px;
+            border-radius: 10px;
+        }
+
+        /* Sección de emergencias */
+        .emergency-box {
+            background: #fff3cd;
+            border: 3px dashed #ffc107;
+            border-radius: 18px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .emergency-title {
+            font-family: 'Fredoka One', cursive;
+            color: #d39e00;
+            font-size: 17px;
+            margin-bottom: 12px;
+        }
+
+        .contact-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+        }
+
+        .contact-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-name {
+            font-weight: 700;
+            color: #333;
+            font-size: 15px;
+            text-align: left;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 6px;
+        }
+
+        /* Botón de Llamada */
+        .btn-call {
+            background: #4ea8de;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-family: 'Fredoka One', cursive;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 3px 8px rgba(78, 168, 222, 0.3);
+        }
+
+        .btn-call:hover {
+            transform: scale(1.05);
+            background: #3a8bc9;
+        }
+
+        /* Botón de WhatsApp */
+        .btn-wa {
+            background: #25d366;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-family: 'Fredoka One', cursive;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 3px 8px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-wa:hover {
+            transform: scale(1.05);
+            background: #20ba5a;
+        }
+
+        /* Botón especial inferior para Todo ID Manillas */
+        .todo-id-box {
+            background: #e3fcef;
+            border: 2px solid #25d366;
+            border-radius: 15px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .todo-id-btn {
+            background: #25d366;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-family: 'Fredoka One', cursive;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+        }
+
+        .todo-id-btn:hover {
+            transform: scale(1.02);
+            background: #20ba5a;
+        }
+
+        /* Nota final */
+        .footer-note {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+            color: #777;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Cabecera -->
+        <div class="header">
+            <h1>¡Mis Datos Vitales!</h1>
+        </div>
+
+        <!-- Muñequito / Avatar Infantil SVG -->
+        <div class="avatar-container">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C8.686 2 6 4.686 6 8C6 9.7 6.67 11.23 7.76 12.35C6.7 13.3 6 14.7 6 16.25C6 19.4 8.68 22 11.83 22H12.17C15.32 22 18 19.4 18 16.25C18 14.7 17.3 13.3 16.24 12.35C17.33 11.23 18 9.7 18 8C18 4.686 15.314 2 12 2Z" fill="#4ea8de"/>
+                <circle cx="12" cy="11" r="5" fill="#ffd166"/>
+                <circle cx="10.5" cy="10.5" r="0.75" fill="#2b2d42"/>
+                <circle cx="13.5" cy="10.5" r="0.75" fill="#2b2d42"/>
+                <path d="M11 12.5C11 12.5 11.5 13.2 12 13.2C12.5 13.2 13 12.5 13 12.5" stroke="#2b2d42" stroke-width="0.75" stroke-linecap="round"/>
+                <path d="M7 19.5C7 17.5 9.2 16 12 16C14.8 16 17 17.5 17 19.5V22H7V19.5Z" fill="#ff70a6"/>
+            </svg>
+        </div>
+
+        <div class="content">
+            <!-- Datos del niño -->
+            <div class="info-group">
+                <span class="info-label">Nombre:</span>
+                <span class="info-value">Mateo U</span>
+            </div>
+
+            <div class="info-group">
+                <span class="info-label">Tipo de Sangre:</span>
+                <span class="info-value rh">O+</span>
+            </div>
+
+            <!-- Emergencias con Llamada y WhatsApp -->
+            <div class="emergency-box">
+                <div class="emergency-title">
+                    🚨 En caso de emergencia:
+                </div>
+
+                <!-- Mamá -->
+                <div class="contact-row">
+                    <span class="contact-name">Mamá</span>
+                    <div class="action-buttons">
+                        <a href="tel:3114911820" class="btn-call" title="Llamar">
+                            📞 Llamar
+                        </a>
+                        <a href="https://wa.me/573114911820" target="_blank" class="btn-wa" title="WhatsApp">
+                            💬 WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Papá -->
+                <div class="contact-row">
+                    <span class="contact-name">Papá</span>
+                    <div class="action-buttons">
+                        <a href="tel:3114011820" class="btn-call" title="Llamar">
+                            📞 Llamar
+                        </a>
+                        <a href="https://wa.me/573114011820" target="_blank" class="btn-wa" title="WhatsApp">
+                            💬 WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón Final de Todo ID Manillas -->
+            <div class="todo-id-box">
+                <a href="https://wa.me/573016711060" target="_blank" class="todo-id-btn">
+                    💬 Ventas Todo ID Manillas
+                </a>
+            </div>
+
+            <div class="footer-note">
+                Proyecto de Presentación - Datos No Reales ✨
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
